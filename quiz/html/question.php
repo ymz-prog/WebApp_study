@@ -1,27 +1,16 @@
 <?php
 
-
 require __DIR__.'/../lib/functions.php';
 
 $id = '3';
 
 $data = fetchById($id);
+$formattedData = generateFormattedData($data);
 
-$question = nl2br($data[1]);
-
-
-
-$answers = [
-    'A' => $data[2],
-    'B' => $data[3],
-    'C' => $data[4],
-    'D' => $data[5],
-];
-
-
-$correctAnswer = strtoupper($data[6]);
+$question = $formattedData['question'];
+$answers = $formattedData['answers'];
+$correctAnswer = $formattedData['correctAnswer'];
 $correctAnswerValue = $answers[$correctAnswer];
-$explanation = nl2br($data[7]);
-
+$explanation = $formattedData['explanation'];
 
 include __DIR__.'/../template/question.tpl.php';
