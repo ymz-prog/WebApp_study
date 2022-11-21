@@ -22,13 +22,16 @@ if (!$data) {
 $formattedData = generateFormattedData($data);
 
 $correctAnswer = $formattedData['correctAnswer'];
-$correctAnswerValue = $formattedData['answers'][$correctAnswer];
+$correctAnswerValue = $formattedData['answers'];
 $explanation = $formattedData['explanation'];
 
 $result = $selectedAnswer === $correctAnswer;
 
-echo $result;
-var_dump($result);
-echo $correctAnswer;
-echo $correctAnswerValue;
-echo $explanation;
+$response = [
+    'result' => $result,
+    'correctAnswer' => $formattedData['correctAnswer'],
+    'correctAnswerValue' => $formattedData['answers'][$correctAnswer],
+    'explanation' => $formattedData['explanation']
+];
+
+echo json_encode($response);
