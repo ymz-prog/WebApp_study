@@ -3,8 +3,6 @@ const answersList = document.querySelectorAll('ol.answers li');
 answersList.forEach(li => li.addEventListener('click', checkClickedAnswer));
 
 
-
-
 function checkClickedAnswer(event) {
     const clickedAnswerElement = event.currentTarget;
     // console.log(clickedAnswerElement.dataset.answer);
@@ -52,7 +50,6 @@ function checkClickedAnswer(event) {
     });
 }
 
-
 function displayResult(result, correctAnswer, correctAnswerValue, explanation) {
     // メッセージを入れる変数を用意
     let message;
@@ -71,7 +68,7 @@ function displayResult(result, correctAnswer, correctAnswerValue, explanation) {
     alert(message);
 
 
-    document.querySelector('span#correct-answer').innerHTML = correctAnswer;
+    document.querySelector('span#correct-answer').innerHTML = correctAnswer + '. ' + correctAnswerValue;
     document.querySelector('span#explanation').innerHTML = explanation;
 
     // 色を変更
