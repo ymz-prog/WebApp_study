@@ -2,24 +2,20 @@
 
 require __DIR__.'/../lib/functions.php';
 
-if (!$handler = fopen(__DIR__.'/../lib/data.csv', 'r')) {load404();}
-// データを取得
-$questionCnt = [];
-$ifFirst = true;
-// 問題数取得
-while ($row = fgetcsv($handler)){
-    // 初回すきっぷ
-    if($ifFirst){
-        $ifFirst = false;
-        continue;
-    }
-    array_push($questionCnt, $row[0]);
+$dataList = fetchAll();
+
+if (!$dataList) {
+    load404();
 }
-// ファイルを閉じる
-fclose($handler);
+
+$questions = [];
+foreach($dataList as $data) {
+    $questions[] = generateFormattedData($data);
+}
 
 $assignData = [
-    'questionCnt' => $questionCnt
+    'questions' => $questions
 ];
+
 
 loadTemplate('index', $assignData);

@@ -12,8 +12,8 @@
         <h1>Quizサンプル</h1>
         <h2>問題一覧</h2>
         <ul>
-            <?php foreach($questionCnt as $value): ?>
-            <li><a href="question.php?id=<?php echo $value; ?>">問題<?php echo $value; ?></a></li>
+            <?php foreach($questions as $question): ?>
+            <li><a href="question.php?id=<?php echo $question['id']; ?>"><?php echo $question['question']; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
