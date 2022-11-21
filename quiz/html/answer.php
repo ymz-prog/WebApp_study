@@ -2,7 +2,8 @@
 
 require __DIR__.'/../lib/functions.php';
 
-$id = escape( $_GET['id'] ?? '');
+$id = $_POST['id'] ?? '';
+$selectedAnswer = $_POST['selectedAnswer'] ?? '';
 
 $data = fetchById($id);
 
@@ -20,10 +21,14 @@ if (!$data) {
 
 $formattedData = generateFormattedData($data);
 
-$question = $formattedData['question'];
-$answers = $formattedData['answers'];
 $correctAnswer = $formattedData['correctAnswer'];
-$correctAnswerValue = $answers[$correctAnswer];
+$correctAnswerValue = $formattedData['answers'][$correctAnswer];
 $explanation = $formattedData['explanation'];
 
-include __DIR__.'/../template/question.tpl.php';
+$result = $selectedAnswer === $correctAnswer;
+
+echo $result;
+var_dump($result);
+echo $correctAnswer;
+echo $correctAnswerValue;
+echo $explanation;
